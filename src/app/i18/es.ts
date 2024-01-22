@@ -1,4 +1,4 @@
-import { TranslationDictionary } from '@app/types/i18'
+import { TranslationDictionary } from '@app/i18/types'
 
 const translations: Record<TranslationDictionary, string> = {
   'home.title': 'Hola Mundo',

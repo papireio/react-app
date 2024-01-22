@@ -1,13 +1,11 @@
 import { useIntl } from 'react-intl'
 
-import { TranslationDictionary } from '@app/types/i18'
+import { TranslationDictionary } from '@app/i18/types'
 
-const useTranslate = () => {
+export const useTranslate = () => {
   const { formatMessage } = useIntl()
 
   const translate = (id: TranslationDictionary): string => formatMessage({ id })
 
   return { translate }
 }
-
-export default useTranslate

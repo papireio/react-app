@@ -40,7 +40,7 @@ const options = {
         ],
       },
       {
-        test: /\.css/,
+        test: /\.scss/,
         use: [
           {
             loader: 'style-loader',
@@ -55,6 +55,17 @@ const options = {
                   : '[hash:base64]',
               },
             },
+          },
+        ],
+      },
+      {
+        test: /\.css/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
           },
         ],
       },
@@ -74,6 +85,7 @@ const options = {
     }),
     new DefinePlugin({
       'process.env': {
+        API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost'),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
       },
     }),

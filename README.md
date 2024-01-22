@@ -1,4 +1,6 @@
-# react-typescript
+# react-app
+
+Papire.io React App
 
 ### Requirements
 

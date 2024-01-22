@@ -20,12 +20,6 @@
 html,
 body {
   height: 100%;
-  color: #000;
-  background-color: #fff;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  line-height: 15px;
-  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -36,7 +30,6 @@ body {
   5. Improve text rendering
 */
 body {
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 

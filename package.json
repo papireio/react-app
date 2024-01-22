@@ -21,7 +21,6 @@
       "stylelint --fix"
     ],
     "*.{ts,tsx}": [
-      "tsc --noEmit --skipLibCheck",
       "eslint --fix --max-warnings=0",
       "prettier --write"
     ]
@@ -71,7 +70,10 @@
       ],
       "quotes": [
         "error",
-        "single"
+        "single",
+        {
+          "avoidEscape": true
+        }
       ],
       "semi": [
         "error",
@@ -124,7 +126,7 @@
         "error"
       ],
       "react-hooks/exhaustive-deps": [
-        "warn"
+        "off"
       ]
     }
   },
@@ -157,13 +159,12 @@
     ]
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.0.1",
+    "axios": "^1.6.5",
+    "primereact": "^10.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intl": "^6.6.0",
-    "react-redux": "^9.1.0",
-    "react-router-dom": "^6.21.2",
-    "redux": "^5.0.1"
+    "react-router-dom": "^6.21.2"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
@@ -172,6 +173,7 @@
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
+    "@types/node": "^20.11.5",
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",

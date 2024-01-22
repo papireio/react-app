@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client'
-import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
+import { AppStateProvider } from '@app/context'
+
 import App from './App'
-import { store } from './store'
 
 const bootstrap = () => {
   const selector = document.querySelector('#root')
@@ -11,11 +11,11 @@ const bootstrap = () => {
     const root = createRoot(selector)
 
     root.render(
-      <Provider store={store}>
+      <AppStateProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </Provider>
+      </AppStateProvider>
     )
   } else {
     throw new Error("Can't get document selector.")

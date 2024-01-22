@@ -1,24 +1,41 @@
-import React from 'react'
+import 'primereact/resources/themes/lara-light-cyan/theme.css'
 
+import { useEffect } from 'react'
+
+import { PrimeReactProvider } from 'primereact/api'
 import { IntlProvider } from 'react-intl'
-import { Route, Routes } from 'react-router-dom'
 
-import { useLocale } from '@app/hooks'
+import { useAuthorize, useLocale } from '@app/hooks'
 
-import css from './App.css'
-import { Home } from './routes'
+import { Application, Landing } from '@app/modules'
+
+import css from './App.scss'
 
 const App = () => {
   const { locale, messages } = useLocale()
+  const {
+    fetchAuthorizedUser,
+    isAuthorized,
+    isUnauthorized,
+    isLoading,
+    isError,
+  } = useAuthorize()
+
+  useEffect(() => {
+    fetchAuthorizedUser()
+  }, [])
 
   return (
-    <IntlProvider locale={locale} messages={messages}>
-      <div className={css.container}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </div>
-    </IntlProvider>
+    <PrimeReactProvider value={{ appendTo: 'self', cssTransition: false }}>
+      <IntlProvider locale={locale} messages={messages}>
+        <div className={css.container}>
+          {isLoading && <div>loading</div>}
+          {isAuthorized && <Application />}
+          {isUnauthorized && <Landing />}
+          {isError && <div>internal server error</div>}
+        </div>
+      </IntlProvider>
+    </PrimeReactProvider>
   )
 }
 

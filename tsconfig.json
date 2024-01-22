@@ -4,14 +4,15 @@
     "strictNullChecks": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "lib": ["es2019", "dom"],
+    "lib": ["es2015", "dom"],
     "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["./src/typings"],
     "baseUrl": ".",
     "paths": {
       "@app/*": ["src/app/*"],
-      "@lib/*": ["src/lib/*"]
+      "@lib/*": ["src/lib/*"],
+      "react": [ "./node_modules/@types/react" ]
     }
   },
   "exclude": ["node_modules", "dist"]
