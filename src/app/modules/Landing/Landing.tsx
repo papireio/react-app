@@ -1,45 +1,22 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-
-import { createSession, CreateSessionError } from '@app/api'
-
-import { AuthorizedApiError } from '@app/services'
+import { useEffect } from 'react'
 
 import { Input, Panel } from '@lib/components'
 
 import { Button } from '@lib/components/Button/Button'
 
+import { useLanding } from './hooks'
+
 import css from './styles.css'
 
 export const Landing = () => {
-  const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { target } = event
-    setEmail(target.value)
-  }
-
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { target } = event
-    setPassword(target.value)
-  }
-
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault()
-    setLoading(true)
-
-    try {
-      const { session_token } = await createSession(email, password)
-      localStorage.setItem('session_token', session_token)
-      window.location.href = '/'
-    } catch (error) {
-      const { message } = error as AuthorizedApiError<CreateSessionError>
-      alert(message)
-    } finally {
-      setLoading(false)
-    }
-  }
+  const {
+    loading,
+    email,
+    password,
+    handleEmailChange,
+    handlePasswordChange,
+    handleSubmit,
+  } = useLanding()
 
   useEffect(() => {
     document.title = 'Papire.io'
