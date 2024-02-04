@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 import { createSession } from '@app/api'
 
 import { Input, Panel } from '@lib/components'
+
+import { Button } from '@lib/components/Button/Button'
 
 import css from './styles.css'
 
@@ -23,18 +25,22 @@ export const Landing = () => {
     }
   }
 
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+  }
+
   useEffect(() => {
-    document.title = 'papireio'
+    document.title = 'Papire.io'
   }, [])
 
   return (
-    <div className={css.container}>
+    <form className={css.container} onSubmit={handleSubmit}>
       <img src="/logo.svg" alt="logo" />
       <Panel title="Sign in to your account">
-        <Input type="email" />
-        <Input type="password" />
-        <button>Continue</button>
+        <Input type="email" placeholder="Email" />
+        <Input type="password" placeholder="Password" />
+        <Button type="submit">Continue</Button>
       </Panel>
-    </div>
+    </form>
   )
 }
