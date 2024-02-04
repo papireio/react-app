@@ -17,9 +17,9 @@ export const getAuthorizedUser = async () => {
     const { response } = error as AxiosError
 
     switch (response?.status) {
-      case 403:
+      case 401:
         throw new AuthorizedApiError<GetAuthorizedUserError>(
-          403,
+          401,
           ServerErrors.UNAUTHORIZED
         )
 

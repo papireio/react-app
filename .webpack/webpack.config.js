@@ -40,7 +40,7 @@ const options = {
         ],
       },
       {
-        test: /\.scss/,
+        test: /\.css/,
         use: [
           {
             loader: 'style-loader',
@@ -55,17 +55,6 @@ const options = {
                   : '[hash:base64]',
               },
             },
-          },
-        ],
-      },
-      {
-        test: /\.css/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
           },
         ],
       },
