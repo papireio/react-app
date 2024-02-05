@@ -1,4 +1,3 @@
-import '@lib/style.css'
 import { useEffect } from 'react'
 
 import { IntlProvider } from 'react-intl'
@@ -7,7 +6,8 @@ import { useAuthorize, useLocale } from '@app/hooks'
 
 import { Application, Landing } from '@app/modules'
 
-import css from './App.css'
+import { ThemeProvider } from '@lib/components'
+import { GlobalCss, ResetCss } from '@lib/styles'
 
 const App = () => {
   const { locale, messages } = useLocale()
@@ -25,12 +25,16 @@ const App = () => {
 
   return (
     <IntlProvider locale={locale} messages={messages}>
-      <div className={css.container}>
-        {isLoading && <div>loading</div>}
-        {isAuthorized && <Application />}
-        {isUnauthorized && <Landing />}
-        {isError && <div>internal server error</div>}
-      </div>
+      <ThemeProvider>
+        <ResetCss />
+        <GlobalCss />
+        <div>
+          {isLoading && <div>loading</div>}
+          {isAuthorized && <Application />}
+          {isUnauthorized && <Landing />}
+          {isError && <div>internal server error</div>}
+        </div>
+      </ThemeProvider>
     </IntlProvider>
   )
 }

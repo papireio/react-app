@@ -6,8 +6,6 @@ import { Button } from '@lib/components/Button/Button'
 
 import { useLanding } from './hooks'
 
-import css from './styles.css'
-
 export const Landing = () => {
   const {
     loading,
@@ -23,7 +21,7 @@ export const Landing = () => {
   }, [])
 
   return (
-    <form className={css.container} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <img src="/logo.svg" alt="logo" />
       <Panel title="Sign in to your account">
         <Input

@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 import { createSession, CreateSessionError } from '@app/api'
+import { SESSION_TOKEN_KEY } from '@app/constants'
 import { AuthorizedApiError } from '@app/services'
 
 export const useLanding = () => {
@@ -24,7 +25,7 @@ export const useLanding = () => {
 
     try {
       const { session_token } = await createSession(email, password)
-      localStorage.setItem('session_token', session_token)
+      localStorage.setItem(SESSION_TOKEN_KEY, session_token)
       window.location.href = '/'
     } catch (error) {
       const { message } = error as AuthorizedApiError<CreateSessionError>

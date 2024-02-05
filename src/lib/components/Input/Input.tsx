@@ -1,10 +1,19 @@
-import cn from 'classnames'
-
-import css from './styles.css'
+import {
+  StyledInput,
+  StyledInputContainer,
+  StyledLabel,
+  StyledMessage,
+} from './styled'
 import { InputProps } from './types'
 
-export const Input = (props: InputProps) => {
-  const className = cn(css.container, props.className)
-
-  return <input {...props} className={className} />
+export const Input = ({ label, message, ...props }: InputProps) => {
+  return (
+    <StyledInputContainer>
+      {label && <StyledLabel>{label}</StyledLabel>}
+      <StyledInput {...props} />
+      {message && (
+        <StyledMessage variant={props.variant}>message</StyledMessage>
+      )}
+    </StyledInputContainer>
+  )
 }
