@@ -46,10 +46,10 @@ export const StyledInput = styled.input<StyledInputProps>`
   color: ${(props) => getTextColor(props.theme, props.variant)};
   padding: 0 12px;
   border-radius: 4px;
-  border: 1px solid
-    ${(props) => getInputBorderColor(props.theme, props.variant)};
   outline: 0;
   margin-top: 12px;
+  border: 1px solid
+    ${(props) => getInputBorderColor(props.theme, props.variant)};
 
   &:focus {
     outline: 3px solid ${(props) => props.theme.color.line.focus};

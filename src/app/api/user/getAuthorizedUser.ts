@@ -18,8 +18,9 @@ export const getAuthorizedUser = async () => {
 
     switch (response?.status) {
       case 401:
+      case 403:
         throw new AuthorizedApiError<GetAuthorizedUserError>(
-          401,
+          403,
           ServerErrors.UNAUTHORIZED
         )
 

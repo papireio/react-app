@@ -6,7 +6,7 @@ import { useAuthorize, useLocale } from '@app/hooks'
 
 import { Application, Landing } from '@app/modules'
 
-import { ThemeProvider } from '@lib/components'
+import { Loading, ThemeProvider } from '@lib/components'
 import { GlobalCss, ResetCss } from '@lib/styles'
 
 const App = () => {
@@ -28,12 +28,10 @@ const App = () => {
       <ThemeProvider>
         <ResetCss />
         <GlobalCss />
-        <div>
-          {isLoading && <div>loading</div>}
-          {isAuthorized && <Application />}
-          {isUnauthorized && <Landing />}
-          {isError && <div>internal server error</div>}
-        </div>
+        {isLoading && <Loading />}
+        {isAuthorized && <Application />}
+        {isUnauthorized && <Landing />}
+        {isError && <div>internal server error</div>}
       </ThemeProvider>
     </IntlProvider>
   )

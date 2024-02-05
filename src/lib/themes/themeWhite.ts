@@ -21,6 +21,11 @@ export const whiteTheme: DefaultTheme = {
       secondary: '#3c425799',
       warning: colorOrange,
       error: colorRed,
+      inverted: '#ffffffff',
+    },
+    fill: {
+      primary: '#1a759fff',
+      secondary: '#1e6091aa',
     },
   },
   shadow: {

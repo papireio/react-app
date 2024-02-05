@@ -32,8 +32,9 @@ export const createSession = async (email: string, password: string) => {
         )
 
       case 401:
+      case 403:
         throw new AuthorizedApiError<CreateSessionError>(
-          401,
+          403,
           ServerErrors.UNAUTHORIZED
         )
 

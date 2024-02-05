@@ -7,50 +7,13 @@ export const appStateReducer: GenericReducer<AppState, AppStateAction> = (
   action
 ): AppState => {
   switch (action.type) {
-    case 'FETCH_USER_ERROR': {
-      const { fetching } = state
-
-      return {
-        ...state,
-        fetching: {
-          ...fetching,
-          pending: false,
-          succeed: false,
-          error: action.payload,
-        },
-      }
-    }
-
-    case 'FETCH_USER_START': {
-      const { fetching } = state
-
-      return {
-        ...state,
-        fetching: {
-          ...fetching,
-          idle: false,
-          pending: true,
-          error: undefined,
-        },
-      }
-    }
-
-    case 'FETCH_USER_SUCCESS': {
-      const { fetching } = state
-
+    case 'SET_USER':
       return {
         ...state,
         user: action.payload,
-        fetching: {
-          ...fetching,
-          pending: false,
-          succeed: true,
-        },
       }
-    }
 
-    default: {
+    default:
       return state
-    }
   }
 }

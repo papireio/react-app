@@ -19,6 +19,11 @@ declare module 'styled-components' {
         secondary: string
         warning: string
         error: string
+        inverted: string
+      }
+      fill: {
+        primary: string
+        secondary: string
       }
     }
     shadow: {

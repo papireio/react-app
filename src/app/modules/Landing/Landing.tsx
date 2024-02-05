@@ -1,5 +1,12 @@
 import { useEffect } from 'react'
 
+import {
+  StyledInputs,
+  StyledLandingContainer,
+  StyledLandingForm,
+  StyledLogo,
+} from '@app/modules/Landing/styled'
+
 import { Input, Panel } from '@lib/components'
 
 import { Button } from '@lib/components/Button/Button'
@@ -8,7 +15,7 @@ import { useLanding } from './hooks'
 
 export const Landing = () => {
   const {
-    loading,
+    isLoading,
     email,
     password,
     handleEmailChange,
@@ -21,25 +28,29 @@ export const Landing = () => {
   }, [])
 
   return (
-    <form onSubmit={handleSubmit}>
-      <img src="/logo.svg" alt="logo" />
+    <StyledLandingContainer>
+      <StyledLogo src="/logo.svg" alt="logo" />
       <Panel title="Sign in to your account">
-        <Input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <Button type="submit" loading={loading}>
-          Continue
-        </Button>
+        <StyledLandingForm onSubmit={handleSubmit}>
+          <StyledInputs>
+            <Input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleEmailChange}
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </StyledInputs>
+          <Button type="submit" loading={isLoading}>
+            Continue
+          </Button>
+        </StyledLandingForm>
       </Panel>
-    </form>
+    </StyledLandingContainer>
   )
 }

@@ -4,35 +4,42 @@ import { GetAuthorizedUserError, getAuthorizedUser } from '@app/api'
 import { AppStateContext } from '@app/context'
 import { AuthorizedApiError } from '@app/services'
 
+import { useDebounceFetch } from '@lib/hooks'
+
 export const useAuthorize = () => {
-  const { dispatch, state } = useContext(AppStateContext)
-  const { fetching } = state
+  const { dispatch } = useContext(AppStateContext)
+  const {
+    error,
+    handleError,
+    handleStart,
+    handleSucceed,
+    idle,
+    pending,
+    status,
+    succeed,
+  } = useDebounceFetch()
 
-  const isLoading = fetching.pending && !fetching.idle
-
-  const isAuthorized = !isLoading && fetching.succeed
-  const isUnauthorized =
-    !isLoading && fetching.error?.message === 'unauthorized'
-  const isError = fetching.error?.message === 'internal_server_error'
+  const isLoading = !idle && pending
+  const isAuthorized = !isLoading && succeed && status === 200
+  const isUnauthorized = (!isLoading && error && status === 403) || idle
+  const isError = !isUnauthorized && error
 
   const fetchAuthorizedUser = async () => {
-    dispatch({ type: 'FETCH_USER_START' })
+    handleStart()
 
     try {
       const payload = await getAuthorizedUser()
-      dispatch({ type: 'FETCH_USER_SUCCESS', payload })
+      dispatch({ type: 'SET_USER', payload })
+      handleSucceed({ status: 200 })
     } catch (error) {
-      dispatch({
-        type: 'FETCH_USER_ERROR',
-        payload: error as AuthorizedApiError<GetAuthorizedUserError>,
-      })
+      handleError(error as AuthorizedApiError<GetAuthorizedUserError>)
     }
   }
 
   return {
-    isLoading,
     isAuthorized,
     isUnauthorized,
+    isLoading,
     isError,
     fetchAuthorizedUser,
   }

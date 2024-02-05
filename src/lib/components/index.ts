@@ -1,4 +1,5 @@
 export * from './Button'
 export * from './Input'
+export * from './Loading'
 export * from './Panel'
 export * from './ThemeProvider'
