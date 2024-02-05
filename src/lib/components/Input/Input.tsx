@@ -12,7 +12,7 @@ export const Input = ({ label, message, ...props }: InputProps) => {
       {label && <StyledLabel>{label}</StyledLabel>}
       <StyledInput {...props} />
       {message && (
-        <StyledMessage variant={props.variant}>message</StyledMessage>
+        <StyledMessage variant={props.variant}>{message}</StyledMessage>
       )}
     </StyledInputContainer>
   )

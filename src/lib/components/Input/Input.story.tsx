@@ -38,6 +38,10 @@ export const Default: Story = {
       type: 'string',
       defaultValue: '',
     },
+    message: {
+      type: 'string',
+      defaultValue: '',
+    },
     value: {
       type: 'string',
       defaultValue: '',

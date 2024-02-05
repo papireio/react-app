@@ -70,6 +70,8 @@ export const StyledLabel = styled.span`
 
 export const StyledMessage = styled.span<StyledInputProps>`
   color: ${(props) => getTextColor(props.theme, props.variant)};
-  margin-top: 6px;
+  margin-top: 4px;
+  margin-left: 2px;
   font-size: 12px;
+  line-height: 1.6;
 `
